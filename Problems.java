@@ -1,8 +1,67 @@
 public class Problems {
 
-//Здесь собраны решения задач с codingbat.com, которые я решал на днях
+/* Здесь собраны решения задач с codingbat.com, которые я решал на днях. 
+Также добавил задачи из типичных, которых там не попалось */
 
     public static void main (String[] args) {}
+
+/*Given n of 1 or more, return the factorial of n, which is n * (n-1) * (n-2) ... 1. 
+factorial(1) → 1
+factorial(2) → 2
+factorial(3) → 6 */
+    public int factorial(int n) {
+        int result = n;
+        while (n > 1) {
+            result *= n - 1;
+            n--;
+        }
+        return result;
+    }
+
+/*Given n of 1 or more, return the factorial of n, which is n * (n-1) * (n-2) ... 1. 
+Compute the result recursively (without loops).
+factorialRecursively(1) → 1
+factorialRecursively(2) → 2
+factorialRecursively(3) → 6 */   
+    public int factorialRecursively(int n) {
+        if (n == 1) return 1;
+        return n * factorial (n - 1);
+    }
+
+/* The fibonacci sequence is a famous bit of mathematics, and it happens to have a recursive definition. 
+The first two values in the sequence are 0 and 1 (essentially 2 base cases). 
+Each subsequent value is the sum of the previous two values, so the whole sequence is: 0, 1, 1, 2, 3, 5, 8, 13, 21 and so on. 
+Define a recursive fibonacci(n) method that returns the nth fibonacci number, with n=0 representing the start of the sequence.
+fibonacci(0) → 0
+fibonacci(1) → 1
+fibonacci(2) → 1 */
+    public int fibonacci(int n) {
+        if (n < 2) return n;
+        return fibonacci(n - 1) + fibonacci(n - 2); 
+    }
+
+// Разворот массива (нужен import java.util.*;)
+    public static int[] reverse(int[] arr) {
+        int[] result = new int[arr.length];
+        ArrayList<Integer> list = new ArrayList<>();
+        for (int i : arr) {
+            list.add(i);
+        }
+        Collections.reverse(list);
+        for (int i = 0; i < arr.length; i++) {
+            result[i] = list.get(i);
+        }
+        return result;
+    }
+
+// Разбиение строки
+    public static char[] split (String str) {
+        char[] result = new char[str.length()];
+        for (int i = 0; i < str.length(); i++) {
+            result[i] = str.charAt(i);
+        }
+        return result;
+    }
 
 /*Given an array of scores, return true if each score is equal or greater than the one before.
 The array will be length 2 or more.
