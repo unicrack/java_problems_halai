@@ -9,7 +9,7 @@ public class Problems {
 factorial(1) → 1
 factorial(2) → 2
 factorial(3) → 6 */
-    public int factorial(int n) {
+    public static int factorial(int n) {
         int result = n;
         while (n > 1) {
             result *= n - 1;
@@ -23,9 +23,9 @@ Compute the result recursively (without loops).
 factorialRecursively(1) → 1
 factorialRecursively(2) → 2
 factorialRecursively(3) → 6 */   
-    public int factorialRecursively(int n) {
+    public static int factorialRecursively(int n) {
         if (n == 1) return 1;
-        return n * factorial (n - 1);
+        return n * factorialRecursively (n - 1);
     }
 
 /* The fibonacci sequence is a famous bit of mathematics, and it happens to have a recursive definition. 
@@ -35,7 +35,7 @@ Define a recursive fibonacci(n) method that returns the nth fibonacci number, wi
 fibonacci(0) → 0
 fibonacci(1) → 1
 fibonacci(2) → 1 */
-    public int fibonacci(int n) {
+    public static int fibonacci(int n) {
         if (n < 2) return n;
         return fibonacci(n - 1) + fibonacci(n - 2); 
     }
@@ -68,7 +68,7 @@ The array will be length 2 or more.
 scoresIncreasing([1, 3, 4]) → true
 scoresIncreasing([1, 3, 2]) → false
 scoresIncreasing([1, 1, 4]) → true*/
-    public boolean scoresIncreasing(int[] scores) {
+    public static boolean scoresIncreasing(int[] scores) {
         for (int i = 1; i < scores.length; i++) {
             if (scores[i] < scores [i - 1]) return false;
         };
@@ -80,7 +80,7 @@ The array length will be at least 2.
 scores100([1, 100, 100]) → true
 scores100([1, 100, 99, 100]) → false
 scores100([100, 1, 100, 100]) → true */
-    public boolean scores100(int[] scores) {
+    public static boolean scores100(int[] scores) {
         for (int i = 1; i < scores.length; i++) {
             if (scores[i] == 100 && scores[i - 1] == 100) return true;
         };
@@ -93,7 +93,7 @@ such as with {3, 4, 5} or {3, 5, 5}.
 scoresClump([3, 4, 5]) → true
 scoresClump([3, 4, 6]) → false
 scoresClump([1, 3, 5, 5]) → true*/
-    public boolean scoresClump(int[] scores) {
+    public static boolean scoresClump(int[] scores) {
         for (int i = 2; i < scores.length; i++) {
             if (scores[i] - scores[i - 2] <= 2) return true;
         };
@@ -113,12 +113,12 @@ Normally you would compute averages with doubles, but here we use ints so the ex
 scoresAverage([2, 2, 4, 4]) → 4
 scoresAverage([4, 4, 4, 2, 2, 2]) → 4
 scoresAverage([3, 4, 5, 1, 2, 3]) → 4 */
-    public int scoresAverage(int[] scores) {
+    public static int scoresAverage(int[] scores) {
         int first = average (scores, 0, scores.length / 2 - 1);
         int second = average (scores, scores.length / 2, scores.length - 1);
         return Math.max(first, second);
     }
-    public int average (int[] scores, int start, int end) {
+    public static int average (int[] scores, int start, int end) {
         int sum = 0;
         int count = 0;
         for (int i = start; i <= end; i++) {
@@ -132,7 +132,7 @@ scoresAverage([3, 4, 5, 1, 2, 3]) → 4 */
 wordsCount(["a", "bb", "b", "ccc"], 1) → 2
 wordsCount(["a", "bb", "b", "ccc"], 3) → 1
 wordsCount(["a", "bb", "b", "ccc"], 4) → 0*/
-    public int wordsCount(String[] words, int len) {
+    public static int wordsCount(String[] words, int len) {
         int count = 0;
         for (String i : words) {
             if (i.length() == len) count++;
@@ -145,7 +145,7 @@ N will be in the range 1..length.
 wordsFront(["a", "b", "c", "d"], 1) → ["a"]
 wordsFront(["a", "b", "c", "d"], 2) → ["a", "b"]
 wordsFront(["a", "b", "c", "d"], 3) → ["a", "b", "c"] */
-    public String[] wordsFront(String[] words, int n) {
+    public static String[] wordsFront(String[] words, int n) {
         String[] result = new String[n];
         for (int i = 0; i < n; i++) {
             result[i] = words[i];
@@ -159,7 +159,7 @@ See wordsWithout() below which is more difficult because it uses arrays.
 wordsWithoutList(["a", "bb", "b", "ccc"], 1) → ["bb", "ccc"]
 wordsWithoutList(["a", "bb", "b", "ccc"], 3) → ["a", "bb", "b"]
 wordsWithoutList(["a", "bb", "b", "ccc"], 4) → ["a", "bb", "b", "ccc"] */
-    public List wordsWithoutList(String[] words, int len) {
+    public static List wordsWithoutList(String[] words, int len) {
         List<String> result = new ArrayList();
         for (String word : words) {
             if (word.length() != len) {
@@ -173,7 +173,7 @@ wordsWithoutList(["a", "bb", "b", "ccc"], 4) → ["a", "bb", "b", "ccc"] */
 hasOne(10) → true
 hasOne(22) → false
 hasOne(220) → false */
-    public boolean hasOne(int n) {
+    public static boolean hasOne(int n) {
         while (n >= 9) {
             if (n % 10 == 1) return true;
             n = n / 10;
@@ -187,7 +187,7 @@ We'll say that 0 does not divide into anything evenly, so no number with a 0 dig
 dividesSelf(128) → true
 dividesSelf(12) → true
 dividesSelf(120) → false */
-    public boolean dividesSelf(int n) {
+    public static boolean dividesSelf(int n) {
         int temp = n;
         while (temp > 9) {
             if (temp % 10 == 0 || n % (temp % 10) != 0) return false;
@@ -202,7 +202,7 @@ The original array will contain at least "count" even numbers.
 copyEvens([3, 2, 4, 5, 8], 2) → [2, 4]
 copyEvens([3, 2, 4, 5, 8], 3) → [2, 4, 8]
 copyEvens([6, 1, 2, 4, 5, 8], 3) → [6, 2, 4] */
-    public int[] copyEvens(int[] nums, int count) {
+    public static int[] copyEvens(int[] nums, int count) {
         int[] result = new int[count];
         int index = 0;
         for (int num: nums) {
@@ -223,7 +223,7 @@ The original array will contain at least "count" endy numbers.
 copyEndy([9, 11, 90, 22, 6], 2) → [9, 90]
 copyEndy([9, 11, 90, 22, 6], 3) → [9, 90, 6]
 copyEndy([12, 1, 1, 13, 0, 20], 2) → [1, 1] */
-    public int[] copyEndy(int[] nums, int count) {
+    public static int[] copyEndy(int[] nums, int count) {
         int[] result = new int[count];
         int index = 0;
         for (int num : nums) {
@@ -247,7 +247,7 @@ The strings may be any length, including 0.
 matchUp(["aa", "bb", "cc"], ["aaa", "xx", "bb"]) → 1
 matchUp(["aa", "bb", "cc"], ["aaa", "b", "bb"]) → 2
 matchUp(["aa", "bb", "cc"], ["", "", "ccc"]) → 1 */
-    public int matchUp(String[] a, String[] b) {
+    public static int matchUp(String[] a, String[] b) {
         int count = 0;
         for (int i = 0; i < a.length; i++) {
             if (a[i].length() > 0 && b[i].length() > 0 && a[i].charAt(0) == b[i].charAt(0)) {
@@ -265,7 +265,7 @@ giving +4 for each correct answer, -1 for each incorrect answer, and +0 for each
 scoreUp(["a", "a", "b", "b"], ["a", "c", "b", "c"]) → 6
 scoreUp(["a", "a", "b", "b"], ["a", "a", "b", "c"]) → 11
 scoreUp(["a", "a", "b", "b"], ["a", "a", "b", "b"]) → 16*/
-    public int scoreUp(String[] key, String[] answers) {
+    public static int scoreUp(String[] key, String[] answers) {
         int mark = 0;
         for (int i = 0; i < key.length; i++) {
             if (answers[i].equals("?")) continue;
@@ -284,7 +284,7 @@ make a new array of the correct length, and then copy over the correct strings.
 wordsWithout(["a", "b", "c", "a"], "a") → ["b", "c"]
 wordsWithout(["a", "b", "c", "a"], "b") → ["a", "c", "a"]
 wordsWithout(["a", "b", "c", "a"], "c") → ["a", "b", "a"] */
-    public String[] wordsWithout(String[] words, String target) {
+    public static String[] wordsWithout(String[] words, String target) {
         int count = 0;
         for (String word : words) {
             if (!word.equals(target)) count++;
@@ -307,7 +307,7 @@ Write your helper method after your scoresSpecial() method in the JavaBat text a
 scoresSpecial([12, 10, 4], [2, 20, 30]) → 40
 scoresSpecial([20, 10, 4], [2, 20, 10]) → 40
 scoresSpecial([12, 11, 4], [2, 20, 31]) → 20 */
-    public int scoresSpecial(int[] a, int[] b) {
+    public static int scoresSpecial(int[] a, int[] b) {
         return maximumSpecial(a) + maximumSpecial(b);
     }
     public int maximumSpecial(int[] arr) {
@@ -328,7 +328,7 @@ The start end end index will both be valid indexes into the array with start <= 
 sumHeights([5, 3, 6, 7, 2], 2, 4) → 6
 sumHeights([5, 3, 6, 7, 2], 0, 1) → 2
 sumHeights([5, 3, 6, 7, 2], 0, 4) → 11 */
-    public int sumHeights(int[] heights, int start, int end) {
+    public static int sumHeights(int[] heights, int start, int end) {
         int diff = 0;
         for (int i = start; i < end; i++) {
             diff += Math.abs(heights[i] - heights[i + 1]);
@@ -346,7 +346,7 @@ The start end end index will both be valid indexes into the array with start <= 
 sumHeights2([5, 3, 6, 7, 2], 2, 4) → 7
 sumHeights2([5, 3, 6, 7, 2], 0, 1) → 2
 sumHeights2([5, 3, 6, 7, 2], 0, 4) → 15 */
-    public int sumHeights2(int[] heights, int start, int end) {
+    public static int sumHeights2(int[] heights, int start, int end) {
         int diff = 0;
         for (int i = start; i < end; i++) {
             if (heights[i] < heights[i + 1]) {
@@ -367,7 +367,7 @@ The start end end index will both be valid indexes into the array with start <= 
 bigHeights([5, 3, 6, 7, 2], 2, 4) → 1
 bigHeights([5, 3, 6, 7, 2], 0, 1) → 0
 bigHeights([5, 3, 6, 7, 2], 0, 4) → 1 */
-    public int bigHeights(int[] heights, int start, int end) {
+    public static int bigHeights(int[] heights, int start, int end) {
         int count = 0;
         for (int i = start; i < end; i++) {
             if (Math.abs(heights[i] - heights[i + 1]) > 4) count++;
@@ -382,13 +382,13 @@ Order first by the string names, and then by the id numbers if the names are the
 userCompare("bb", 1, "zz", 2) → -1
 userCompare("bb", 1, "aa", 2) → 1
 userCompare("bb", 1, "bb", 1) → 0 */
-    public int userCompare(String aName, int aId, String bName, int bId) {
+    public static int userCompare(String aName, int aId, String bName, int bId) {
         if (stringDiff(aName, bName) != 0) return stringDiff(aName, bName);
         if (aId > bId) return 1;
         if (aId < bId) return -1;
         return 0;
     }
-    public int stringDiff(String a, String b) {
+    public static int stringDiff(String a, String b) {
         if (a.compareTo(b) < 0) return -1;
         if (a.compareTo(b) > 0) return 1;
         return 0;
@@ -402,7 +402,7 @@ A and B will both have a length which is N or more.
 mergeTwo(["a", "c", "z"], ["b", "f", "z"], 3) → ["a", "b", "c"]
 mergeTwo(["a", "c", "z"], ["c", "f", "z"], 3) → ["a", "c", "f"]
 mergeTwo(["f", "g", "z"], ["c", "f", "g"], 3) → ["c", "f", "g"] */
-    public String[] mergeTwo(String[] a, String[] b, int n) {
+    public static String[] mergeTwo(String[] a, String[] b, int n) {
         int currentA = 0;
         int currentB = 0;
         String[] result = new String[n];
